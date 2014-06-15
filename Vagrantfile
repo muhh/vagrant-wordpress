@@ -10,8 +10,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 3306, host: 3306
 
   config.vm.synced_folder ".", "/vagrant"
-  config.vm.synced_folder "www", "/var/www/docroot", type: "rsync", rsync__exclude: [".git/"]
-  #config.vm.synced_folder "files", "/var/www/docroot/drupal/sites/default/files", owner: "www-data"
+  config.vm.synced_folder "www", "/var/www/docroot", type: "rsync", rsync__exclude: [ ".git/", "uploads" ]
+  config.vm.synced_folder "uploads", "/var/www/docroot/wp-content/uploads", owner: "www-data"
 
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
